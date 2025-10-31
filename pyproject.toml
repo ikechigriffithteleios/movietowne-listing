@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "movietowne-listing"
+version = "0.1.0"
+description = "Service scaffolding for the Movietowne listing platform"
+authors = ["Movietowne Platform Team <devs@movietowne.example>"]
+readme = "README.md"
+packages = [{ include = "movietowne_listing", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.110.0"
+uvicorn = { extras = ["standard"], version = "^0.27.0" }
+pydantic = "^1.10.0"
+celery = "^5.3.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.0"
+mypy = "^1.8.0"
+pytest = "^8.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+plugins = []
