@@ -1,0 +1,52 @@
+region = "us-east-1"
+vpc_cidr = "10.10.0.0/16"
+private_subnets = {
+  "us-east-1a" = "10.10.1.0/24"
+  "us-east-1b" = "10.10.2.0/24"
+}
+public_subnets = {
+  "us-east-1a" = "10.10.101.0/24"
+  "us-east-1b" = "10.10.102.0/24"
+}
+execution_role_arn = "arn:aws:iam::123456789012:role/movietowne-dev-ecs-execution"
+task_role_arn      = "arn:aws:iam::123456789012:role/movietowne-dev-ecs-task"
+database_url       = "postgresql+psycopg://app:password@dev-db.example.com:5432/movietowne"
+redis_url          = "redis://dev-redis.example.com:6379/0"
+common_env = {
+  "TWILIO_ACCOUNT_SID" = "ACxxxxxxxx"
+  "TWILIO_AUTH_TOKEN"  = "secure"
+}
+services = {
+  ingestion = {
+    cpu    = "512"
+    memory = "1024"
+    image  = "123456789012.dkr.ecr.us-east-1.amazonaws.com/movietowne-ingestion:latest"
+    port   = 8001
+    env    = {}
+  }
+  scheduling = {
+    cpu    = "512"
+    memory = "1024"
+    image  = "123456789012.dkr.ecr.us-east-1.amazonaws.com/movietowne-scheduling:latest"
+    port   = 8002
+    env    = {}
+  }
+  messaging = {
+    cpu    = "512"
+    memory = "1024"
+    image  = "123456789012.dkr.ecr.us-east-1.amazonaws.com/movietowne-messaging:latest"
+    port   = 8003
+    env    = {}
+  }
+  admin = {
+    cpu    = "512"
+    memory = "1024"
+    image  = "123456789012.dkr.ecr.us-east-1.amazonaws.com/movietowne-admin:latest"
+    port   = 8000
+    env    = {}
+  }
+}
+tags = {
+  "project" = "movietowne"
+  "env"     = "dev"
+}
